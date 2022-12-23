@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "name": "js-snippet",
+  "version": "1.0.0",
+  "description": "JS Code Snippet",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
