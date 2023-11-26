@@ -1,4 +1,4 @@
-# JS-Snippet
+# ToolKit
 
 - [Queue](/lib/Queue/)
 - [Scanner](/lib/Scanner/)

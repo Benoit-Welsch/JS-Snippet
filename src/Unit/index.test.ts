@@ -1,6 +1,5 @@
-import { it } from "node:test";
-import { strict as assert } from "node:assert";
-import { sizeToUnit } from "./Unit.js";
+import { sizeToUnitAuto } from ".";
+import { describe, it, expect } from "bun:test";
 
 const data = [
   {
@@ -59,7 +58,6 @@ const data = [
       unit: "",
     },
   },
-  ,
   {
     number: 0,
     expect: {
@@ -69,10 +67,12 @@ const data = [
   },
 ];
 
-it("should get correct unit", () => {
-  data.forEach((d) => {
-    const r = sizeToUnit(d.number);
-    assert.equal(d.expect.n, r.n);
-    assert.equal(d.expect.unit, r.unit);
+describe("sizeToUnit", () => {
+  it("should convert size to the appropriate unit", () => {
+    data.forEach((d) => {
+      const { n, unit } = sizeToUnitAuto(d.number);
+      expect(n).toBe(d.expect.n);
+      expect(unit).toBe(d.expect.unit);
+    });
   });
 });

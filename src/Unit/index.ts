@@ -1,15 +1,17 @@
-/**
- * @param  {number} n
- * @returns {{n: number, unit:string, toString: () => string, round:() => number,roundToString: () => string }}
- */
-export const sizeToUnit = (n) => {
-  const units = ["P", "T", "G", "M", "K", ""];
+type Unit = "P" | "T" | "G" | "M" | "K" | "";
+
+const defaultUnits: Unit[] = ["P", "T", "G", "M", "K", ""];
+
+export const sizeToUnitAuto = (n: number, si = true, units?: string[]) => {
+  units = units || defaultUnits;
+  const power = si ? 1000 : 1024;
   let unitIndex = units.findIndex((_, key) => {
-    return n / Math.pow(1000, units.length - key - 1) >= 1;
+    // @ts-ignore
+    return n / Math.pow(power, units.length - key - 1) >= 1;
   });
   if (unitIndex == -1) unitIndex = units.length - 1;
   return {
-    n: n / Math.pow(1000, units.length - unitIndex - 1),
+    n: n / Math.pow(power, units.length - unitIndex - 1),
     unit: units[unitIndex],
     toString: function () {
       return this.n + this.unit;

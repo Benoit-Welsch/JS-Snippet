@@ -1,12 +1,28 @@
 {
-  "type": "module",
-  "name": "js-snippet",
   "version": "1.0.0",
-  "description": "JS Code Snippet",
+  "name": "@lv00/toolkit",
+  "module": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "node --test"
+    "build": "bun run build.mjs",
+    "prepublishOnly": "bun run build",
+    "publish": "npm publish --access public"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "bun-plugin-dts": "^0.2.1",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT"
 }
