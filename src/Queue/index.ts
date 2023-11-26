@@ -1,4 +1,9 @@
-export default class Queue extends Array {
+export interface Job {
+  run: () => Promise<any>;
+  running: boolean;
+}
+
+export default class Queue extends Array<Job> {
   running = 0;
   maxjob = 1;
 
@@ -20,7 +25,7 @@ export default class Queue extends Array {
     });
   }
 
-  add(f) {
+  add(f: () => Promise<any>) {
     this.push({ run: f, running: false });
     this.exec();
   }
