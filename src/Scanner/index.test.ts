@@ -1,8 +1,8 @@
 import { it, expect } from 'bun:test';
-import Scanner from '.';
+import {readFolder} from '.';
 
 it('should scan current folder', () => {
-  const libFolder = Scanner('./src/Scanner');
+  const libFolder = readFolder('./src/Scanner');
 
   expect(libFolder.path).toBe('./src/Scanner');
   expect(libFolder.parent).toBeUndefined();
@@ -21,7 +21,7 @@ it('should scan current folder', () => {
 });
 
 it('should scan parent folder', () => {
-  const libFolder = Scanner('./src/');
+  const libFolder = readFolder('./src/');
 
   expect(libFolder.path).toBe('./src/');
   expect(libFolder.parent).toBeUndefined();

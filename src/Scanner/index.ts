@@ -122,7 +122,7 @@ const recursiveScan = (
   return folder;
 };
 
-const scan = (path: string) => {
+export const readFolder = (path: string) => {
   try {
     existsSync(path);
     return recursiveScan(path, undefined);
@@ -130,5 +130,3 @@ const scan = (path: string) => {
     throw err;
   }
 };
-
-export default scan;

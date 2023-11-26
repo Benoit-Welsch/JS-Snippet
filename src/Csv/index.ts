@@ -14,6 +14,15 @@ export default class CSV extends Array<Array<string | number>> {
   getHeader() {
     return this[0];
   }
+  
+  addLine(line: Array<string | number>) {
+    if (line.length !== this.maxCol) {
+      throw new Error(
+        `CSV: Line length is not equal to header length (line: ${line.length} header: ${this.maxCol})`,
+      );
+    }
+    this.push(line);
+  }
 
   addSequentially(s: string | number): string | number {
     const lastLine = this[this.length - 1];
