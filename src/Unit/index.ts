@@ -1,6 +1,6 @@
-type Unit = "P" | "T" | "G" | "M" | "K" | "";
+type Unit = 'P' | 'T' | 'G' | 'M' | 'K' | '';
 
-const defaultUnits: Unit[] = ["P", "T", "G", "M", "K", ""];
+const defaultUnits: Unit[] = ['P', 'T', 'G', 'M', 'K', ''];
 
 export const sizeToUnitAuto = (n: number, si = true, units?: string[]) => {
   units = units || defaultUnits;

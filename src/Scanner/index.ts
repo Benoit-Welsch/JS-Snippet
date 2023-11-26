@@ -1,5 +1,5 @@
-import { readdirSync, statSync, existsSync } from "fs";
-import path from "path";
+import { readdirSync, statSync, existsSync } from 'fs';
+import path from 'path';
 
 class File {
   path: string;
@@ -26,7 +26,7 @@ class File {
 
   toJson() {
     return JSON.stringify(this, (key, value) => {
-      if (value && typeof value === "object" && key == "parent")
+      if (value && typeof value === 'object' && key == 'parent')
         return undefined;
       return value;
     });
@@ -59,7 +59,7 @@ class Folder {
   toJson() {
     delete this.parent;
     return JSON.stringify(this, (key, value) => {
-      if (value && typeof value === "object" && key == "parent")
+      if (value && typeof value === 'object' && key == 'parent')
         return undefined;
       return value;
     });
