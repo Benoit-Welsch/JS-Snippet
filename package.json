@@ -1,7 +1,7 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.7",
   "name": "@lv00/toolkit",
-  "module": "index.js",
+  "module": "./dist/index.js",
   "type": "module",
   "scripts": {
     "build": "bun run build.mjs"
@@ -13,6 +13,7 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "main": "./dist/index.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

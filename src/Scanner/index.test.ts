@@ -1,6 +1,5 @@
 import { it, expect } from 'bun:test';
 import Scanner from '.';
-import { isGeneratorFunction } from 'util/types';
 
 it('should scan current folder', () => {
   const libFolder = Scanner('./src/Scanner');
