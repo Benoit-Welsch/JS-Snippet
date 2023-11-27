@@ -1,6 +1,7 @@
 # Ignore folder
 .vscode/
 .github/
+dist_standalone/
 .devcontainer/
 node_modules/
 src/

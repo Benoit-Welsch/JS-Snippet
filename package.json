@@ -7,6 +7,7 @@
     "build": "bun run build.mjs"
   },
   "devDependencies": {
+    "@types/node": "^20.10.0",
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "latest"
   },
