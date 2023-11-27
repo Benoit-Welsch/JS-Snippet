@@ -14,7 +14,7 @@ export default class CSV extends Array<Array<string | number>> {
   getHeader() {
     return this[0];
   }
-  
+
   addLine(line: Array<string | number>) {
     if (line.length !== this.maxCol) {
       throw new Error(

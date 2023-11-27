@@ -1,5 +1,3 @@
-const ipRegex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
-
 export const buildUrlWithQuery = (
   inUrl: string,
   query: Record<string, string | string[]>,
@@ -14,8 +12,4 @@ export const buildUrlWithQuery = (
     }
   });
   return url;
-};
-
-export const isIp = (ip: string) => {
-  return ipRegex.test(ip);
 };

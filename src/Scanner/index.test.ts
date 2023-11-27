@@ -1,5 +1,5 @@
 import { it, expect } from 'bun:test';
-import {readFolder} from '.';
+import { readFolder } from '.';
 
 it('should scan current folder', () => {
   const libFolder = readFolder('./src/Scanner');
