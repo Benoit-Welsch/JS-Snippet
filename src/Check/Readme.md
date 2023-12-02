@@ -11,5 +11,5 @@ is.ip('1.1.1'); // false
 is.email('test@test.local'); // true
 is.email('test@test'); // false
 
-... // use intellicense to see more
+... // use intellisense to see more
 ```
