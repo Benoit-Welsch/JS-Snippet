@@ -1,6 +1,6 @@
 ### Url
 
-Conviniently build urls with query parameters.
+Conveniently build urls with query parameters.
 
 ```typescript
 import { Url } from "@lv00/toolkit";

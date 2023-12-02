@@ -5,7 +5,7 @@ import fs from "fs/promises";
 
 await Bun.build({
   entrypoints: ["./src/index.ts"],
-  outdir: "./dist",
+  outDir: "./dist",
   target: "bun",
   minify: true,
   plugins: [dts()],
@@ -14,13 +14,13 @@ await Bun.build({
 Scanner.readFolder("./src").folders.map(async (f) => {
   const name = path.basename(f.path);
   const entrypoints = [path.join("./src", name, "index.ts")];
-  const outdir = path.join("./dist_standalone", name);
+  const outDir = path.join("./dist_standalone", name);
 
-  await fs.mkdir(outdir, { recursive: true });
+  await fs.mkdir(outDir, { recursive: true });
 
   await Bun.build({
     entrypoints,
-    outdir,
+    outDir,
     target: "bun",
     minify: true,
     plugins: [dts()],
@@ -28,7 +28,7 @@ Scanner.readFolder("./src").folders.map(async (f) => {
 
   await fs.copyFile(
     path.join("./src", name, "Readme.md"),
-    path.join(outdir, "Readme.md"),
+    path.join(outDir, "Readme.md"),
   );
 
   const pkg = JSON.parse(
@@ -36,9 +36,10 @@ Scanner.readFolder("./src").folders.map(async (f) => {
   );
 
   await fs.writeFile(
-    path.join(outdir, "package.json"),
+    path.join(outDir, "package.json"),
     JSON.stringify({
       ...pkg,
+      scripts: {},
       name: `@lv00/toolkit.${name.toLowerCase()}`,
       description: `reduce toolkit including only ${name}`,
       module: "./index.js",

@@ -22,7 +22,6 @@ bun install @lv00/toolkit
 import { ... } from "@lv00/toolkit";
 ```
 
-
 ### Check
 
 Easily check data type and format.
@@ -38,7 +37,6 @@ is.email('test@test'); // false
 
 ... // use intellisense to see more
 ```
-
 
 ### CSV
 
@@ -64,8 +62,6 @@ csv.toString("|");
 // Clear the CSV and keep the header
 csv.clear();
 ```
-
-
 
 ### Scanner
 
@@ -108,7 +104,7 @@ size.roundToString(2); // 1.00K
 
 ### Url
 
-Conviniently build urls with query parameters.
+Conveniently build urls with query parameters.
 
 ```typescript
 import { Url } from "@lv00/toolkit";
