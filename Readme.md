@@ -1,12 +1,11 @@
 # ToolKit
 
-- [CSV](#csv)
+- [Check](#check)
+- [Csv](#csv)
+- [Queue](#queue)
 - [Scanner](#scanner)
-- [Url](#url)
 - [Unit](#unit)
-<!-- - [Queue](#queue)
-- [Unit](/lib/Unit/)
-- [Url](/lib/Url/) -->
+- [Url](#url)
 
 ## Installation
 
@@ -23,7 +22,27 @@ bun install @lv00/toolkit
 import { ... } from "@lv00/toolkit";
 ```
 
+
+### Check
+
+Easily check data type and format.
+
+```typescript
+import { Is } from "@lv00/toolkit";
+
+is.ip('127.0.0.1'); // true
+is.ip('1.1.1'); // false
+
+is.email('test@test.local'); // true
+is.email('test@test'); // false
+
+... // use intellicense to see more
+```
+
+
 ### CSV
+
+Create CSV on the fly.
 
 ```typescript
 import { CSV } from "@lv00/toolkit";
@@ -46,7 +65,11 @@ csv.toString("|");
 csv.clear();
 ```
 
+
+
 ### Scanner
+
+Read folder synchronously without headache
 
 ```typescript
 import { Scanner } from "@lv00/toolkit";
@@ -65,22 +88,9 @@ scanner.flat();
 scanner.toJson();
 ```
 
-### Url
-
-```typescript
-import { Url } from "@lv00/toolkit";
-
-const url = "https://lv0.eu/";
-const query = {
-  p: "2",
-  brand: ["sony", "microsoft", "nintendo"],
-};
-
-const q = Url.buildUrlWithQuery(url, query);
-console.log(q.toString()); // https://lv0.eu/?p=2&brand=sony&brand=microsoft&brand=nintendo'
-```
-
 ### Unit
+
+Convert data to human readable format
 
 ```typescript
 import { Unit } from "./src";
@@ -94,4 +104,21 @@ size.unit; // K
 size.toString(); // 1.K
 size.round(2); // 1.00
 size.roundToString(2); // 1.00K
+```
+
+### Url
+
+Conviniently build urls with query parameters.
+
+```typescript
+import { Url } from "@lv00/toolkit";
+
+const url = "https://lv0.eu/";
+const query = {
+  p: "2",
+  brand: ["sony", "microsoft", "nintendo"],
+};
+
+const q = Url.buildUrlWithQuery(url, query);
+console.log(q.toString()); // https://lv0.eu/?p=2&brand=sony&brand=microsoft&brand=nintendo'
 ```

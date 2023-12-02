@@ -4,7 +4,8 @@
   "module": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "bun run build.mjs"
+    "build": "bun run build.mjs",
+    "doc": "bun run genDoc.ts"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

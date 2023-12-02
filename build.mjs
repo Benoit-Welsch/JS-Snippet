@@ -26,6 +26,11 @@ Scanner.readFolder("./src").folders.map(async (f) => {
     plugins: [dts()],
   });
 
+  await fs.copyFile(
+    path.join("./src", name, "Readme.md"),
+    path.join(outdir, "Readme.md"),
+  );
+
   const pkg = JSON.parse(
     await fs.readFile("package.json", { encoding: "utf-8" }),
   );

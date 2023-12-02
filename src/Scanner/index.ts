@@ -1,7 +1,7 @@
-import { readdirSync, statSync, existsSync } from 'fs';
+import { readdirSync, statSync, existsSync, readFileSync } from 'fs';
 import path from 'path';
 
-class File {
+export class File {
   path: string;
   name: string;
   parent: Folder;
@@ -24,6 +24,10 @@ class File {
     this.meta = meta;
   }
 
+  read() {
+    return readFileSync(path.join(this.path, this.name), 'utf-8');
+  }
+
   toJson() {
     return JSON.stringify(this, (key, value) => {
       if (value && typeof value === 'object' && key == 'parent')
@@ -33,7 +37,7 @@ class File {
   }
 }
 
-class Folder {
+export class Folder {
   path: string;
   files: File[];
   folders: Folder[];

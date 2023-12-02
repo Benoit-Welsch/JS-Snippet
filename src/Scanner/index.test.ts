@@ -6,11 +6,12 @@ it('should scan current folder', () => {
 
   expect(libFolder.path).toBe('./src/Scanner');
   expect(libFolder.parent).toBeUndefined();
-  expect(libFolder.files.length).toBe(2);
+  expect(libFolder.files.length).toBe(3);
   expect(libFolder.folders.length).toBe(0);
 
-  expect(libFolder.files[0].name).toBe('index.test.ts');
-  expect(libFolder.files[1].name).toBe('index.ts');
+  expect(libFolder.files[0].name).toBe('Readme.md');
+  expect(libFolder.files[1].name).toBe('index.test.ts');
+  expect(libFolder.files[2].name).toBe('index.ts');
 
   libFolder.files.forEach((file) => {
     expect(file.parent).toBe(libFolder);
