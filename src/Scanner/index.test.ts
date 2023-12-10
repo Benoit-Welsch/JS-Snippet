@@ -9,9 +9,13 @@ it('should scan current folder', () => {
   expect(libFolder.files.length).toBe(3);
   expect(libFolder.folders.length).toBe(0);
 
-  expect(libFolder.files[0].name).toBe('Readme.md');
-  expect(libFolder.files[1].name).toBe('index.test.ts');
-  expect(libFolder.files[2].name).toBe('index.ts');
+  expect(libFolder.files).toBeArrayOfSize(3);
+
+  const fileNames = libFolder.files.map((f) => f.name);
+
+  expect(fileNames).toContain('index.ts');
+  expect(fileNames).toContain('Readme.md');
+  expect(fileNames).toContain('index.test.ts');
 
   libFolder.files.forEach((file) => {
     expect(file.parent).toBe(libFolder);
