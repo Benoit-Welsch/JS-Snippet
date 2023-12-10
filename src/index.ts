@@ -13,3 +13,7 @@ export const Unit = { sizeToUnitAuto };
 // Url
 import { buildUrlWithQuery } from './Url';
 export const Url = { buildUrlWithQuery };
+
+// Parser
+import { dot } from './Parser';
+export const Parser = { dot };

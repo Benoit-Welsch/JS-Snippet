@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "build": "bun run build.mjs",
-    "doc": "bun run genDoc.ts"
+    "doc": "bun run genDoc.ts",
+    "format": "prettier --write \"src/**/*.ts\" --single-quote --trailing-comma all --tab-width 2"
   },
   "devDependencies": {
+    "@types/lodash.mergewith": "^4.6.9",
     "@types/node": "^20.10.0",
     "bun-plugin-dts": "^0.2.1",
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "prettier": "^3.1.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -22,5 +25,8 @@
       "default": "./dist/index.js"
     }
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash.mergewith": "^4.6.2"
+  }
 }
