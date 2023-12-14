@@ -3,7 +3,6 @@ import {
   statSync,
   existsSync,
   readFileSync,
-  fstat,
   watch,
   WatchOptions,
 } from 'fs';
