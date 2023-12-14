@@ -1,5 +1,6 @@
 import { it, expect } from 'bun:test';
 import { readFolder } from '.';
+import { file } from 'bun';
 
 it('should scan current folder', () => {
   const libFolder = readFolder('./src/Scanner');
@@ -42,4 +43,17 @@ it('should scan parent folder', () => {
 
   //expect to find Scanner folder
   expect(libFolder.folders.find((f) => f.path === 'src/Scanner')).toBeDefined();
+});
+
+it('should scan parent folder and get only files', () => {
+  const libFolder = readFolder('./src/');
+  const files = libFolder.flat();
+
+  const nbOfIndexFiles = libFolder.folders.length + 1;
+
+  //expect nbOfIndexFiles of index.ts in files
+  expect(files.filter((f) => f.name === 'index.ts')).toBeArrayOfSize(
+    nbOfIndexFiles,
+  );
+
 });

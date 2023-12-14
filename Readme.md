@@ -126,7 +126,7 @@ scanner.files;
 scanner.folders;
 scanner.path;
 
-// return a array of folders
+// return a array of files
 scanner.flat();
 // return json and remove circular references
 scanner.toJson();

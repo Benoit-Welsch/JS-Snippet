@@ -35,6 +35,10 @@ export class File {
       return value;
     });
   }
+
+  fqn() {
+    return path.join(this.path, this.name);
+  }
 }
 
 export class Folder {
@@ -70,18 +74,9 @@ export class Folder {
   }
 
   flat() {
-    let data: Folder[] = [];
+    let data: File[] = [];
     const mergerFolder = (folder: Folder) => {
-      data = data.concat(
-        folder.files.map((f) => {
-          return new Folder({
-            path: f.path,
-            files: [f],
-            folders: [],
-            parent: folder,
-          });
-        }),
-      );
+      data = data.concat(folder.files);
       folder.folders.forEach((f) => {
         mergerFolder(f);
       });
