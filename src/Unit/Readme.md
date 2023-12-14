@@ -3,7 +3,7 @@
 Convert data to human readable format
 
 ```typescript
-import { Unit } from "./src";
+import { Unit } from './src';
 
 // By default it will use 1000 as base
 // and K, M, G, T, P as units
