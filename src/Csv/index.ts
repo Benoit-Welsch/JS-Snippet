@@ -15,12 +15,13 @@ export default class CSV extends Array<Array<string | number>> {
     return this[0];
   }
 
-  addLine(line: Array<string | number>) {
-    if (line.length !== this.maxCol) {
+  addLine(line: Array<string | number>, smallerConsideredAsError = true) {
+    if (line.length !== this.maxCol && smallerConsideredAsError) {
       throw new Error(
         `CSV: Line length is not equal to header length (line: ${line.length} header: ${this.maxCol})`,
       );
     }
+    line.length = this.maxCol;
     this.push(line);
   }
 
@@ -68,7 +69,18 @@ export default class CSV extends Array<Array<string | number>> {
     this.splice(1);
   }
 
-  // static readString(csv: string) {
-  //   //TODO : Not implemented
-  // }
+  static readString(
+    csv: string,
+    separator = ';',
+    headers?: string[],
+    smallerConsideredAsError?: boolean,
+  ) {
+    const lines = csv.split('\r\n').filter((l) => l);
+    const csvObj = new CSV({ header: headers || lines[0].split(separator) });
+    lines.slice(headers ? 0 : 1).forEach((l) => {
+      const line = l.split(separator).filter((l) => l);
+      csvObj.addLine(line, smallerConsideredAsError);
+    });
+    return csvObj;
+  }
 }

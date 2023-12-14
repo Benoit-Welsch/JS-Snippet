@@ -81,15 +81,36 @@ describe('CSV', () => {
     });
   });
 
-  // describe('readString', () => {
-  //   it('should parse a CSV string and return a CSV object', () => {
-  //     const csvString = 'Name,Age,Email\nJohn,30,john@example.com\nJane,25,jane@example.com\n';
-  //     const csv = CSV.readString(csvString);
-  //     expect(csv.getHeader()).toEqual(['Name', 'Age', 'Email']);
-  //     expect(csv).toEqual([
-  //       ['John', 30, 'john@example.com'],
-  //       ['Jane', 25, 'jane@example.com'],
-  //     ]);
-  //   });
-  // });
+  describe('readString', () => {
+    it('should parse a CSV string and return a CSV object', () => {
+      const csvString = header.join(';') + '\r\nJohn;30;email@test.com';
+      const csv = CSV.readString(csvString);
+      expect(csv).toEqual([header, ['John', '30', 'email@test.com']]);
+    });
+
+    it('should parse a CSV string and return a CSV object with a custom separator', () => {
+      const csvString =
+        'Name,Age,Email\r\nJohn,30,john@example.com\r\nJane,25,jane@example.com\r\n';
+      const csv = CSV.readString(csvString, ',');
+      expect(csv).toEqual([
+        ['Name', 'Age', 'Email'],
+        ['John', '30', 'john@example.com'],
+        ['Jane', '25', 'jane@example.com'],
+      ]);
+    });
+
+    it('should parse a CSV string and return a CSV object with a custom header', () => {
+      const csvString = 'John;30';
+      const csv = CSV.readString(
+        csvString,
+        ';',
+        ['test', 'test', 'test'],
+        false,
+      );
+      expect(csv).toEqual([
+        ['test', 'test', 'test'],
+        ['John', '30'],
+      ]);
+    });
+  });
 });
