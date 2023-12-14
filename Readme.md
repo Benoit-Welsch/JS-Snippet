@@ -2,7 +2,9 @@
 
 [![Publish to NPM](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/publish.yml/badge.svg)](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/publish.yml)
 [![Unit Test](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/test.yml/badge.svg)](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/test.yml)
-
+<br>
+[![npm version](https://badge.fury.io/js/%40lv00%2Ftoolkit.svg)](https://badge.fury.io/js/%40lv00%2Ftoolkit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 - [Check](#check)
 - [Csv](#csv)
@@ -48,24 +50,28 @@ is.email('test@test'); // false
 Create CSV on the fly.
 
 ```typescript
-import { CSV } from "@lv00/toolkit";
+import { CSV } from '@lv00/toolkit';
 
-const csv = new CSV({ header: ["name", "age"] });
+const csv = new CSV({ header: ['name', 'age'] });
 
 // Add a line to the CSV
-csv.addLine(["John", 20]);
+csv.addLine(['John', 20]);
 
 // Add value one by one
-csv.addSequentially("Jane & Doe");
+csv.addSequentially('Jane & Doe');
 csv.addSequentially(21);
-csv.addSequentially("Jack");
+csv.addSequentially('Jack');
 csv.addSequentially(22);
 
 // Get the CSV as string
-csv.toString("|");
+csv.toString('|');
 
 // Clear the CSV and keep the header
 csv.clear();
+
+// Read CSV from string
+const csv2 = CSV.readString('name,age\r\nJohn,20\r\nJane,21\r\nJack,22', ',');
+csv2.toString('|');
 ```
 
 ### Parser
@@ -116,9 +122,9 @@ console.log(result);
 Read folder synchronously without headache
 
 ```typescript
-import { Scanner } from "@lv00/toolkit";
+import { Scanner } from '@lv00/toolkit';
 
-const scanner = Scanner.readFolder("./path/to/folder");
+const scanner = Scanner.readFolder('./path/to/folder');
 
 // Available properties
 scanner.parent;
@@ -137,7 +143,7 @@ scanner.toJson();
 Convert data to human readable format
 
 ```typescript
-import { Unit } from "./src";
+import { Unit } from './src';
 
 // By default it will use 1000 as base
 // and K, M, G, T, P as units
@@ -155,12 +161,12 @@ size.roundToString(2); // 1.00K
 Conveniently build urls with query parameters.
 
 ```typescript
-import { Url } from "@lv00/toolkit";
+import { Url } from '@lv00/toolkit';
 
-const url = "https://lv0.eu/";
+const url = 'https://lv0.eu/';
 const query = {
-  p: "2",
-  brand: ["sony", "microsoft", "nintendo"],
+  p: '2',
+  brand: ['sony', 'microsoft', 'nintendo'],
 };
 
 const q = Url.buildUrlWithQuery(url, query);

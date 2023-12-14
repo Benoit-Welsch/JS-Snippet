@@ -3,12 +3,12 @@
 Conveniently build urls with query parameters.
 
 ```typescript
-import { Url } from "@lv00/toolkit";
+import { Url } from '@lv00/toolkit';
 
-const url = "https://lv0.eu/";
+const url = 'https://lv0.eu/';
 const query = {
-  p: "2",
-  brand: ["sony", "microsoft", "nintendo"],
+  p: '2',
+  brand: ['sony', 'microsoft', 'nintendo'],
 };
 
 const q = Url.buildUrlWithQuery(url, query);

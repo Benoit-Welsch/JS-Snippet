@@ -55,5 +55,4 @@ it('should scan parent folder and get only files', () => {
   expect(files.filter((f) => f.name === 'index.ts')).toBeArrayOfSize(
     nbOfIndexFiles,
   );
-
 });

@@ -1,4 +1,12 @@
-import { readdirSync, statSync, existsSync, readFileSync } from 'fs';
+import {
+  readdirSync,
+  statSync,
+  existsSync,
+  readFileSync,
+  fstat,
+  watch,
+  WatchOptions,
+} from 'fs';
 import path from 'path';
 
 export class File {
@@ -38,6 +46,24 @@ export class File {
 
   fqn() {
     return path.join(this.path, this.name);
+  }
+
+  watch(callback: (file: File) => void, options: WatchOptions = {}) {
+    //use fs.watch
+    watch(this.fqn(), { ...options, recursive: false }, (event, fileName) => {
+      console.log(event, fileName);
+      if (fileName instanceof Error) {
+        throw fileName;
+      }
+
+      if (event === 'rename' || event === 'change') {
+        this.name = fileName || this.name;
+      }
+      if (event === 'change') {
+        this.meta = statSync(this.fqn());
+      }
+      callback(this);
+    });
   }
 }
 
@@ -84,6 +110,22 @@ export class Folder {
     mergerFolder(this);
     return data;
   }
+
+  // watch(callback: (file: File) => void, options: WatchOptions = {}) {
+  //   watch(this.path, { ...options, recursive: false }, (event, fileName) => {
+  //     if (fileName instanceof Error) {
+  //       throw fileName
+  //     }
+
+  //     if (event === 'rename' || event === 'change') {
+  //       this.name = fileName || this.name;
+  //     }
+  //     if(event === 'change'){
+  //       this.meta = statSync(this.fqn());
+  //     }
+  //     callback(this);
+  //   });
+  // }
 }
 
 const recursiveScan = (

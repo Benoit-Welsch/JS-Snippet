@@ -1,12 +1,12 @@
-import dts from "bun-plugin-dts";
-import { Scanner } from "./src";
-import path from "path";
-import fs from "fs/promises";
+import dts from 'bun-plugin-dts';
+import { Scanner } from './src';
+import path from 'path';
+import fs from 'fs/promises';
 
 await Bun.build({
-  entrypoints: ["./src/index.ts"],
-  outDir: "./dist",
-  target: "bun",
+  entrypoints: ['./src/index.ts'],
+  outDir: './dist',
+  target: 'bun',
   minify: true,
   plugins: [dts()],
 });
