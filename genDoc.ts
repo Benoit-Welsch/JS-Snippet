@@ -14,8 +14,7 @@ const getToc = (names: (string | undefined)[]) => {
 
 const allDoc = root
   .flat()
-  .map(({ files }) => files.filter((file) => file.name.endsWith('.md')))
-  .filter((file) => typeof file !== 'undefined')
+  .filter((file) => file.name.endsWith('.md'))
   .flat();
 
 const base = allDoc.find((file) => file.name === 'Base.md');
