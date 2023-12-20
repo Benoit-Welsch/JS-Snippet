@@ -17,7 +17,7 @@ const allDoc = root
   .filter((file) => file.name.endsWith('.md'))
   .flat();
 
-const base = allDoc.find((file) => file.name === 'Base.md');
+const base = allDoc.find((file) => file.name === 'Base.md')?.read() || '';
 const docs = allDoc
   .filter((file) => file.name !== 'Base.md')
   .sort((a, b) => {
@@ -29,12 +29,11 @@ const docs = allDoc
   });
 
 const toc = getToc(docs.map(({ path }) => path.split('/')[1]));
+const docsString = docs.map((f) => f.read()).join('\n');
 
-const out = `# ToolKit
+let out = base;
 
-${toc}
-
-${base ? base.read() : ''}
-${docs.map((file) => file.read()).join('\n')}`;
+out = out.replaceAll('{% toc %}', toc);
+out = out.replaceAll('{% docs %}', docsString);
 
 writeFileSync('./Readme.md', out);
