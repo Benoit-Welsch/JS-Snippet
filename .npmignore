@@ -18,6 +18,7 @@ src/
 
 # Ignore bun files
 build.mjs
+genDoc.ts
 bun.lockb
 tsconfig.json
 
