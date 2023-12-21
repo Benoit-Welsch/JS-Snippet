@@ -8,6 +8,7 @@
 
 - [Check](#check)
 - [Csv](#csv)
+- [Gen](#gen)
 - [Parser](#parser)
 - [Queue](#queue)
 - [Scanner](#scanner)
@@ -72,6 +73,18 @@ csv.clear();
 // Read CSV from string
 const csv2 = CSV.readString('name,age\r\nJohn,20\r\nJane,21\r\nJack,22', ',');
 csv2.toString('|');
+```
+
+### Gen
+
+Generate pseudo-random data
+
+#### randomName
+
+```typescript
+import { Gen } from '@lv00/toolkit';
+
+const newName = Gen.randomName(); // antonelli-xenodochial
 ```
 
 ### Parser

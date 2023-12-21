@@ -17,3 +17,7 @@ export const Url = { buildUrlWithQuery };
 // Parser
 import { dot } from './Parser';
 export const Parser = { dot };
+
+// Gen
+import { randomName } from './Gen';
+export const Gen = { randomName };

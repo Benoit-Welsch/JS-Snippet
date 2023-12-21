@@ -7,7 +7,7 @@
     "build": "bun run build.mjs",
     "doc": "bun run genDoc.ts",
     "format": "prettier --write \"src/**/*.ts\" --single-quote --trailing-comma all --tab-width 2",
-    "format:md":"prettier --write  \"**/*.md\" --single-quote --trailing-comma all --tab-width 2",
+    "format:md": "prettier --write  \"**/*.md\" --single-quote --trailing-comma all --tab-width 2",
     "prepublish": "bun doc && bun format:md"
   },
   "devDependencies": {
