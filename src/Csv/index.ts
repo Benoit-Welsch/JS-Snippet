@@ -109,7 +109,7 @@ export default class CSV extends Array<Array<string | number>> {
     const lines = csv.split('\r\n').filter((l) => l);
     const csvObj = new CSV({ header: headers || lines[0].split(separator) });
     lines.slice(headers ? 0 : 1).forEach((l) => {
-      const line = l.split(separator).filter((l) => l);
+      const line = l.split(separator);
       csvObj.addLine(line, smallerConsideredAsError);
     });
     return csvObj;

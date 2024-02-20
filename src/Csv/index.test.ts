@@ -83,9 +83,10 @@ describe('CSV', () => {
 
   describe('readString', () => {
     it('should parse a CSV string and return a CSV object', () => {
-      const csvString = header.join(';') + '\r\nJohn;30;email@test.com';
+      const tempHeader = [...header, 'Name with space'];
+      const csvString = tempHeader.join(';') + '\r\nJohn;30;;';
       const csv = CSV.readString(csvString);
-      expect(csv).toEqual([header, ['John', '30', 'email@test.com']]);
+      expect(csv).toEqual([tempHeader, ['John', '30', '', '']]);
     });
 
     it('should parse a CSV string and return a CSV object with a custom separator', () => {
