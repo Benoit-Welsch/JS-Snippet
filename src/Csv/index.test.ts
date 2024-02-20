@@ -8,7 +8,7 @@ describe('CSV', () => {
   describe('constructor', () => {
     it('should set the header and maxCol properties', () => {
       const csv = new CSV({ header });
-      expect(csv.getHeader()).toEqual(['Name', 'Age', 'Email']);
+      expect(csv.getHeaders()).toEqual(['Name', 'Age', 'Email']);
       expect(csv.maxCol).toBe(3);
     });
   });
@@ -17,7 +17,7 @@ describe('CSV', () => {
     it('should update the header and maxCol properties', () => {
       const csv = new CSV({ header });
       csv.setHeader(['ID', 'Name', 'Email', 'Phone']);
-      expect(csv.getHeader()).toEqual(['ID', 'Name', 'Email', 'Phone']);
+      expect(csv.getHeaders()).toEqual(['ID', 'Name', 'Email', 'Phone']);
       expect(csv.maxCol).toBe(4);
     });
   });
@@ -110,6 +110,15 @@ describe('CSV', () => {
       expect(csv).toEqual([
         ['test', 'test', 'test'],
         ['John', '30'],
+      ]);
+    });
+
+    it('should make a object with the key based on the header and the value based on the line', () => {
+      const csvString = 'Name,Age,Email,Name with space\r\nJohn,30,qsd,qsd\r\n';
+      const csv = CSV.readString(csvString, ',');
+      const obj = csv.toObject();
+      expect(obj).toEqual([
+        { Name: 'John', Age: '30', Email: 'qsd', NameWithSpace: 'qsd' },
       ]);
     });
   });

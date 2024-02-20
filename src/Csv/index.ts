@@ -11,8 +11,39 @@ export default class CSV extends Array<Array<string | number>> {
     this.maxCol = head.length;
   }
 
-  getHeader() {
+  getHeaders() {
     return this[0];
+  }
+
+  getLines() {
+    return this.slice(1);
+  }
+
+  toObject(UpperCaseAfterSapce = true) {
+    const headers = this.getHeaders();
+    return this.getLines().map((line) => {
+      const obj: { [key: string]: string | number } = {};
+      headers.forEach((h, i) => {
+        h = h.toString();
+        // Replace spaces with camel case
+        if (UpperCaseAfterSapce)
+          h = h.replace(/(\s)(\w)/g, (m, s, w) => w.toUpperCase());
+        obj[h] = line[i];
+      });
+      return obj;
+    });
+  }
+
+  each(
+    header = false,
+    callbackfn: (
+      value: (string | number)[],
+      index: number,
+      array: (string | number)[][],
+    ) => void,
+    thisArg?: any,
+  ): void {
+    (header ? this : this.slice(1)).forEach(callbackfn, thisArg);
   }
 
   addLine(line: Array<string | number>, smallerConsideredAsError = true) {
