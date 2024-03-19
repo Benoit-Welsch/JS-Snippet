@@ -20,3 +20,7 @@ export const Parser = { dot };
 
 // Logger
 export * as Log from './Log';
+
+// Gen
+import { randomName } from './Gen';
+export const Gen = { randomName };
