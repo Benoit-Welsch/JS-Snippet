@@ -17,3 +17,6 @@ export const Url = { buildUrlWithQuery };
 // Parser
 import { dot } from './Parser';
 export const Parser = { dot };
+
+// Logger
+export * as Log from './Log';
