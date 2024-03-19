@@ -8,8 +8,8 @@
 
 - [Check](#check)
 - [Csv](#csv)
-- [Log](#log)
 - [Gen](#gen)
+- [Log](#log)
 - [Parser](#parser)
 - [Queue](#queue)
 - [Scanner](#scanner)
@@ -84,6 +84,18 @@ const csv2 = CSV.readString('name,age\r\nJohn,20\r\nJane,21\r\nJack,22', ',');
 csv2.toString('|');
 ```
 
+### Gen
+
+Generate pseudo-random data
+
+#### randomName
+
+```typescript
+import { Gen } from '@lv00/toolkit';
+
+const newName = Gen.randomName(); // antonelli-xenodochial
+```
+
 ### Log
 
 Easily log to various outputs.
@@ -110,17 +122,7 @@ logger.log('Hello, World!', Level.ERROR); // log to all transports registered fo
 new Promise((_, reject) => {
   reject(new Error('Promise Error'));
 }).catch((e) => logger.catch(e)) 
-
-### Gen
-
-Generate pseudo-random data
-
-#### randomName
-
-```typescript
-import { Gen } from '@lv00/toolkit';
-
-const newName = Gen.randomName(); // antonelli-xenodochial
+```
 
 ### Parser
 
@@ -164,6 +166,7 @@ console.log(result);
   },
 }
 ```
+
 
 ### Scanner
 
@@ -220,3 +223,4 @@ const query = {
 const q = Url.buildUrlWithQuery(url, query);
 console.log(q.toString()); // https://lv0.eu/?p=2&brand=sony&brand=microsoft&brand=nintendo'
 ```
+
