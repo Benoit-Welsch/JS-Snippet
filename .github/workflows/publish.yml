@@ -35,8 +35,14 @@ jobs:
       - name: Test
         run: bun test
 
-      - name: Build
+      - name: Build (Bun)
         run: bun run build
+
+      - name: Build (node)
+        run: npm run build:node
+
+      - name: Build (browser)
+        run: npm run build:browser
 
       - run: npm publish --access public
         env:
