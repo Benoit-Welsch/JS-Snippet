@@ -49,19 +49,23 @@ export class File {
 
   watch(callback: (file: File) => void, options: WatchOptions = {}) {
     //use fs.watch
-    watch(this.fqn(), { ...options, recursive: false }, (event, fileName: any | Error) => {
-      if (fileName instanceof Error) {
-        throw fileName;
-      }
+    watch(
+      this.fqn(),
+      { ...options, recursive: false },
+      (event, fileName: any | Error) => {
+        if (fileName instanceof Error) {
+          throw fileName;
+        }
 
-      if (event === 'rename' || event === 'change') {
-        this.name = fileName || this.name;
-      }
-      if (event === 'change') {
-        this.meta = statSync(this.fqn());
-      }
-      callback(this);
-    });
+        if (event === 'rename' || event === 'change') {
+          this.name = fileName || this.name;
+        }
+        if (event === 'change') {
+          this.meta = statSync(this.fqn());
+        }
+        callback(this);
+      },
+    );
   }
 }
 
