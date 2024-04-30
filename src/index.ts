@@ -19,8 +19,8 @@ import { dot } from './Parser';
 export const Parser = { dot };
 
 // Logger
-import { Console, Csv, File, Json, Level, Logger, Transporter } from "./Log"
-export const Log = {Console, Csv, File, Json, Level, Logger, Transporter};
+import { Console, Csv, File, Json, Level, Logger, Transporter } from './Log';
+export const Log = { Console, Csv, File, Json, Level, Logger, Transporter };
 
 // Gen
 import { randomName } from './Gen';

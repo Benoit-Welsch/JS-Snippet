@@ -49,8 +49,7 @@ export class File {
 
   watch(callback: (file: File) => void, options: WatchOptions = {}) {
     //use fs.watch
-    watch(this.fqn(), { ...options, recursive: false }, (event, fileName) => {
-      console.log(event, fileName);
+    watch(this.fqn(), { ...options, recursive: false }, (event, fileName: any | Error) => {
       if (fileName instanceof Error) {
         throw fileName;
       }
