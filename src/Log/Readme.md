@@ -20,6 +20,12 @@ const logger = new Logger({
 logger.log('Hello, World!'); // log to all transports registered for the level INFO
 logger.log('Hello, World!', Level.ERROR); // log to all transports registered for the level ERROR
 
+logger.info('Hello, World!');
+logger.ok('Hello, World!');
+logger.warn('Hello, World!');
+logger.error('Hello, World!');
+logger.debug('Hello, World!'); 
+
 // Log an error
 new Promise((_, reject) => {
   reject(new Error('Promise Error'));
