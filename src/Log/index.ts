@@ -18,10 +18,12 @@ export type Payload = {
 
 export class Logger {
   transports: Transporter[] = [];
+  debug = false;
 
-  constructor(options: { t: Transporter[] }) {
+  constructor(options: { t: Transporter[], debug?: boolean }) {
     if (options.t) {
       this.transports = options.t;
+      this.debug = options.debug || process.env.NODE_ENV === "development" || false;
     }
   }
 
@@ -33,6 +35,7 @@ export class Logger {
   }
 
   log(message: string, l = Level.INFO) {
+    if(!this.debug && l == Level.DEBUG) return
     this.transports.forEach((t) => {
       if (t.reacToLevels.includes(l)) t.send({ message, level: l });
     });
@@ -79,23 +82,40 @@ export abstract class Transporter {
   }
 
   abstract send(log: Payload): void;
+
+  info(message: string) {
+    this.send({ message, level: Level.INFO });
+  }
+
+  ok(message: string) {
+    this.send({ message, level: Level.OK });
+  }
+
+  warn(message: string) {
+    this.send({ message, level: Level.WARN });
+  }
+
+  error(message: string) {
+    this.send({ message, level: Level.ERROR });
+  }
+
+  debug(message: string) {
+    this.send({ message, level: Level.DEBUG });
+  }
+
   catch(err: Error) {
     this.send({ message: err.message, level: Level.ERROR });
   }
 }
 
 export class Console extends Transporter {
-  async send(log: Payload) {
+  send(log: Payload) {
     const { message, level: l } = log;
-    if (l === Level.DEBUG && process.env.NODE_ENV !== 'development') return;
     const { title, emoji } = this.level[l] || this.level[Level.ERROR];
     const out = `${emoji}[${title}] ${message}`;
     console.log(out);
   }
 
-  async catch(err: Error) {
-    this.send({ message: err.message, level: Level.ERROR });
-  }
 }
 
 export class File extends Transporter {
@@ -108,7 +128,6 @@ export class File extends Transporter {
 
   send(log: Payload) {
     const { message, level: l } = log;
-    if (l === Level.DEBUG && process.env.NODE_ENV !== 'development') return;
     const { title } = this.level[l] || this.level[Level.ERROR];
     const out = `[${title}] ${message}`;
     fs.appendFile(this.path, out + '\n', (err) => {
@@ -116,9 +135,6 @@ export class File extends Transporter {
     });
   }
 
-  catch(err: Error) {
-    this.send({ message: err.message, level: Level.ERROR });
-  }
 }
 
 export class Csv extends Transporter {
