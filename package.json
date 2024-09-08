@@ -4,9 +4,9 @@
   "module": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "bun build.mjs && bun build src/index.ts --outfile=dist/index.js --target=bun  --minify",
-    "build:node": "bun build.mjs && bun build src/index.ts --outfile=dist/node.js --target=node  --minify",
-    "build:browser": "bun build.mjs && bun build src/index.ts --outfile=dist/browser.js --target=browser  --minify",
+    "build": "bun build.ts && bun build src/index.ts --outfile=dist/index.js --target=bun  --minify",
+    "build:node": "bun build.ts && bun build src/index.ts --outfile=dist/node.js --target=node  --minify",
+    "build:browser": "bun build.ts && bun build src/index.ts --outfile=dist/browser.js --target=browser  --minify",
     "build:all": "bun run build:node && bun run build:browser && bun run build",
     "doc": "bun genDoc.ts",
     "format": "prettier --write \"src/**/*.ts\" --single-quote --trailing-comma all --tab-width 2",
@@ -15,13 +15,13 @@
   },
   "devDependencies": {
     "@types/lodash.mergewith": "^4.6.9",
-    "@types/node": "^20.12.7",
-    "bun-plugin-dts": "^0.2.1",
+    "@types/node": "^20.16.5",
+    "bun-plugin-dts": "^0.2.3",
     "bun-types": "latest",
-    "prettier": "^3.1.1"
+    "prettier": "^3.3.3"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.4.5"
   },
   "main": "./dist/index.js",
   "exports": {
