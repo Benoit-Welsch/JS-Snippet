@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { CSV as CSVo } from '../index';
+import CSV  from '../Csv';
 
 export enum Level {
   INFO,
@@ -35,7 +35,7 @@ export class Logger {
   }
 
   log(message: string, l = Level.INFO) {
-    if(!this.debug && l == Level.DEBUG) return
+    if (!this.debug && l == Level.DEBUG) return
     this.transports.forEach((t) => {
       if (t.reacToLevels.includes(l)) t.send({ message, level: l });
     });
@@ -139,11 +139,11 @@ export class File extends Transporter {
 
 export class Csv extends Transporter {
   private path: string;
-  private csv: CSVo;
+  private csv: CSV;
 
   constructor({ l, path }: { l?: Level[]; path: string }) {
     super({ l: l || [] });
-    this.csv = new CSVo({ header: ['date', 'level', 'message', 'meta'] });
+    this.csv = new CSV({ header: ['date', 'level', 'message', 'meta'] });
     this.path = path;
   }
 
