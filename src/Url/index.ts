@@ -1,4 +1,4 @@
-interface Query {
+export interface Query {
   [key: string]: string | string[] | number | number[] | boolean | undefined;
 }
 
