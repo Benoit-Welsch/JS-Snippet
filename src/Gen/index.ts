@@ -1,5 +1,11 @@
 import { famousName, word } from './list';
 
+/**
+ * Generate a random name 
+ * @param serperator - The separator between the two words
+ * @param capitalize - Capitalize the first letter of each word
+ * @returns A string
+*/
 export const randomName = (serperator = '-', capitalize = false) => {
   let randomFamousName =
     famousName[Math.floor(Math.random() * famousName.length)];
@@ -14,3 +20,13 @@ export const randomName = (serperator = '-', capitalize = false) => {
   }
   return `${randomFamousName}${serperator}${randomWord}`;
 };
+
+/**
+ * Generate pseudo random numbers between min and max
+ * @param min - The minimum number
+ * @param max - The maximum number
+ * @returns A number
+*/
+export const randomNumbers = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
