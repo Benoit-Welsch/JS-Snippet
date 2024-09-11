@@ -1,6 +1,12 @@
+interface Query {
+  [key: string]: string | string[] | number | number[] | boolean | undefined;
+}
+
+type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
 export const buildUrlWithQuery = (
   inUrl: string,
-  query: Record<string, string | string[] | number | number[] | boolean | undefined>,
+  query: Query,
 ) => {
   const url = new URL(inUrl);
   Object.keys(query).forEach((key) => {
@@ -15,12 +21,29 @@ export const buildUrlWithQuery = (
   return url;
 };
 
-class Uri {
+export class Uri {
 
-  constructor(private url: string, private query: Record<string, string[]>) { }
+  constructor(
+    private url: string,
+    private method: Method,
+    private query: Query,
+    private body: Query,
+    private headers: Record<string, string> = {}
+  ) { }
 
   fetchJson = async (query: Record<string, string | string[] | undefined>) => {
-    const response = await fetch(buildUrlWithQuery(this.url, query).toString());
-    return response.json();
+    return (await this.fetch()).json();
   }
+
+  fetch = () => {
+    return fetch(
+      buildUrlWithQuery(this.url, this.query).toString(),
+      {
+        method: this.method,
+        body: JSON.stringify(this.body),
+        headers: this.headers,
+      }
+    )
+  }
+
 }
