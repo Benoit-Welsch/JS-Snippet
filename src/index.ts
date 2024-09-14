@@ -7,8 +7,8 @@ import { readFolder } from './Scanner';
 export const Scanner = { readFolder };
 
 // Unit
-import { sizeToUnitAuto } from './Unit';
-export const Unit = { sizeToUnitAuto };
+import { sizeToUnitAuto, convertTime } from './Unit';
+export const Unit = { sizeToUnitAuto, convertTime };
 
 // Url
 import { buildUrlWithQuery, Uri } from './Url';

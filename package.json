@@ -1,5 +1,5 @@
 {
-  "version": "1.2.4",
+  "version": "1.2.5",
   "name": "@lv00/toolkit",
   "module": "./dist/index.js",
   "type": "module",

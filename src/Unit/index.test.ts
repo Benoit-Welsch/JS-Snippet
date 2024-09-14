@@ -1,78 +1,25 @@
-import { sizeToUnitAuto } from '.';
+import { convertTime, sizeToUnitAuto, UnitTime } from '.';
 import { describe, it, expect } from 'bun:test';
+import { dataUnit, dataTime } from "./value.test.json"
 
-const data = [
-  {
-    number: 1002004000000000000,
-    expect: {
-      n: 1002.004,
-      unit: 'P',
-    },
-  },
-  {
-    number: 1002004000000000,
-    expect: {
-      n: 1.002004,
-      unit: 'P',
-    },
-  },
-  {
-    number: 1002004000000,
-    expect: {
-      n: 1.002004,
-      unit: 'T',
-    },
-  },
-  {
-    number: 1002004000,
-    expect: {
-      n: 1.002004,
-      unit: 'G',
-    },
-  },
-  {
-    number: 1002004,
-    expect: {
-      n: 1.002004,
-      unit: 'M',
-    },
-  },
-  {
-    number: 1002,
-    expect: {
-      n: 1.002,
-      unit: 'K',
-    },
-  },
-  {
-    number: 1000,
-    expect: {
-      n: 1,
-      unit: 'K',
-    },
-  },
-  {
-    number: 1,
-    expect: {
-      n: 1,
-      unit: '',
-    },
-  },
-  {
-    number: 0,
-    expect: {
-      n: 0,
-      unit: '',
-    },
-  },
-];
 
-describe('sizeToUnit', () => {
-  it('should convert size to the appropriate unit', () => {
-    data.forEach((d) => {
+describe('Unit', () => {
+  it('Should convert file size to the appropriate unit', () => {
+    dataUnit.forEach((d) => {
       const { n, unit } = sizeToUnitAuto(d.number);
       expect(n).toBe(d.expect.n);
       expect(unit).toBe(d.expect.unit);
     });
   });
+
+  it('Should convert time from a unit to another', () => {
+    const data = dataTime as { number: number, from: UnitTime, to: UnitTime, expect: { n: number, unit: UnitTime } }[];
+    data.forEach((d) => {
+      const time = convertTime(d.number, d.from, d.to);
+      expect(time.n).toBe(d.expect.n);
+      expect(time.unit).toBe(d.expect.unit);
+      console.log(time.humanReadable());
+    });
+  })
 });
+

@@ -1,0 +1,123 @@
+{
+  "dataUnit": [
+    {
+      "number": 1002004000000000000,
+      "expect": {
+        "n": 1002.004,
+        "unit": "P"
+      }
+    },
+    {
+      "number": 1002004000000000,
+      "expect": {
+        "n": 1.002004,
+        "unit": "P"
+      }
+    },
+    {
+      "number": 1002004000000,
+      "expect": {
+        "n": 1.002004,
+        "unit": "T"
+      }
+    },
+    {
+      "number": 1002004000,
+      "expect": {
+        "n": 1.002004,
+        "unit": "G"
+      }
+    },
+    {
+      "number": 1002004,
+      "expect": {
+        "n": 1.002004,
+        "unit": "M"
+      }
+    },
+    {
+      "number": 1002,
+      "expect": {
+        "n": 1.002,
+        "unit": "K"
+      }
+    },
+    {
+      "number": 1000,
+      "expect": {
+        "n": 1,
+        "unit": "K"
+      }
+    },
+    {
+      "number": 1,
+      "expect": {
+        "n": 1,
+        "unit": ""
+      }
+    },
+    {
+      "number": 0,
+      "expect": {
+        "n": 0,
+        "unit": ""
+      }
+    }
+  ],
+  "dataTime": [
+    {
+      "number": 1,
+      "from": "D",
+      "to": "s",
+      "expect": {
+        "n": 86400,
+        "unit": "s"
+      }
+    },
+    {
+      "number": 1,
+      "from": "H",
+      "to": "s",
+      "expect": {
+        "n": 3600,
+        "unit": "s"
+      }
+    },
+    {
+      "number": 1,
+      "from": "m",
+      "to": "s",
+      "expect": {
+        "n": 60,
+        "unit": "s"
+      }
+    },
+    {
+      "number": 1,
+      "from": "s",
+      "to": "s",
+      "expect": {
+        "n": 1,
+        "unit": "s"
+      }
+    },
+    {
+      "number": 1,
+      "from": "ms",
+      "to": "s",
+      "expect": {
+        "n": 0.001,
+        "unit": "s"
+      }
+    },
+    {
+      "number": 1,
+      "from": "y",
+      "to": "s",
+      "expect": {
+        "n": 31536000,
+        "unit": "s"
+      }
+    }
+  ]
+}
