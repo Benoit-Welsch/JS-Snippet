@@ -70,6 +70,7 @@ export class File {
 }
 
 export class Folder {
+  name: string;
   path: string;
   files: File[];
   folders: Folder[];
@@ -90,6 +91,7 @@ export class Folder {
     this.files = files;
     this.folders = folders;
     this.parent = parent;
+    this.name = path.split('/').pop() || '';
   }
 
   toJson() {

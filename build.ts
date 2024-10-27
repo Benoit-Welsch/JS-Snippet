@@ -6,12 +6,14 @@ await Bun.build({
   target: 'bun',
   minify: true,
   plugins: [dts()],
-}).catch((e) => {
-  console.error(e);
-  process.exit(1);
-}).then(() => {
-  console.log('build done');
-});
+})
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .then(() => {
+    console.log('build done');
+  });
 
 // Scanner.readFolder("./src").folders.map(async (f) => {
 //   const name = path.basename(f.path);

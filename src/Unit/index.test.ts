@@ -22,7 +22,6 @@ describe('Unit', () => {
       const time = convertTime(d.number, d.from, d.to);
       expect(time.n).toBe(d.expect.n);
       expect(time.unit).toBe(d.expect.unit);
-      console.log(time.humanReadable());
     });
   });
 });

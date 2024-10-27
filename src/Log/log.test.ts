@@ -1,10 +1,4 @@
-import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-} from 'bun:test';
+import { describe, it, expect, beforeEach, afterEach } from 'bun:test';
 import { Logger, Level, File, Csv, Json } from '.';
 import fs from 'fs';
 
