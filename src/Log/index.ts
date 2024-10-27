@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import CSV  from '../Csv';
+import CSV from '../Csv';
 
 export enum Level {
   INFO,
@@ -20,10 +20,11 @@ export class Logger {
   transports: Transporter[] = [];
   debug = false;
 
-  constructor(options: { t: Transporter[], debug?: boolean }) {
+  constructor(options: { t: Transporter[]; debug?: boolean }) {
     if (options.t) {
       this.transports = options.t;
-      this.debug = options.debug || process.env.NODE_ENV === "development" || false;
+      this.debug =
+        options.debug || process.env.NODE_ENV === 'development' || false;
     }
   }
 
@@ -35,7 +36,7 @@ export class Logger {
   }
 
   log(message: string, l = Level.INFO) {
-    if (!this.debug && l == Level.DEBUG) return
+    if (!this.debug && l == Level.DEBUG) return;
     this.transports.forEach((t) => {
       if (t.reacToLevels.includes(l)) t.send({ message, level: l });
     });
@@ -115,7 +116,6 @@ export class Console extends Transporter {
     const out = `${emoji}[${title}] ${message}`;
     console.log(out);
   }
-
 }
 
 export class File extends Transporter {
@@ -134,7 +134,6 @@ export class File extends Transporter {
       if (err) throw err;
     });
   }
-
 }
 
 export class Csv extends Transporter {

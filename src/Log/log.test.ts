@@ -1,36 +1,39 @@
-import { describe, it, expect, afterAll, beforeAll, beforeEach, afterEach } from 'bun:test';
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+} from 'bun:test';
 import { Logger, Level, File, Csv, Json } from '.';
 import fs from 'fs';
 
 describe('log', () => {
-
   beforeEach(() => {
-    try { fs.rmdirSync('./logs', { recursive: true }) }
-    catch (e) { }
-    try { fs.mkdirSync('./logs') }
-    catch (e) { }
-  })
+    try {
+      fs.rmdirSync('./logs', { recursive: true });
+    } catch (e) {}
+    try {
+      fs.mkdirSync('./logs');
+    } catch (e) {}
+  });
 
   afterEach(() => {
     fs.rmdirSync('./logs', { recursive: true });
-  })
+  });
 
   it('should log to a File', async () => {
-    const logger = new Logger(
-      { t: [new File({ path: './logs/random.txt' })] }
-    );
+    const logger = new Logger({ t: [new File({ path: './logs/random.txt' })] });
     logger.log('Hello World');
 
     await Bun.sleep(0);
 
     const content = fs.readFileSync('logs/random.txt', 'utf-8');
     expect(content).toBe('[INFO] Hello World\n');
-  })
+  });
 
   it('Sould log to a Json', async () => {
-    const logger = new Logger(
-      { t: [new Json({ path: './logs/ok.json' })] }
-    );
+    const logger = new Logger({ t: [new Json({ path: './logs/ok.json' })] });
     logger.log('Hello World');
 
     await Bun.sleep(0);
@@ -40,13 +43,10 @@ describe('log', () => {
 
     expect(json[0].level).toBe('INFO');
     expect(json[0].message).toBe('Hello World');
-
-  })
+  });
 
   it('Sould log to a Csv', async () => {
-    const logger = new Logger(
-      { t: [new Csv({ path: './logs/info.csv' })] }
-    );
+    const logger = new Logger({ t: [new Csv({ path: './logs/info.csv' })] });
     logger.log('Hello World');
 
     await Bun.sleep(0);
@@ -56,8 +56,7 @@ describe('log', () => {
 
     expect(csv[1].split(';')[1]).toBe('"INFO"');
     expect(csv[1].split(';')[2]).toBe('"Hello World"');
-
-  })
+  });
 
   it('Sould log to a specific level', async () => {
     const transports = [
@@ -68,9 +67,7 @@ describe('log', () => {
       new File({ l: [Level.ERROR], path: './logs/error.txt' }),
     ];
 
-    const logger = new Logger(
-      { t: transports, debug: true }
-    );
+    const logger = new Logger({ t: transports, debug: true });
 
     logger.log('OK', Level.OK);
     logger.log('INFO', Level.INFO);
@@ -91,16 +88,14 @@ describe('log', () => {
     expect(debug).toBe('[DEBUG] DEBUG\n');
     expect(warn).toBe('[WARN] WARN\n');
     expect(error).toBe('[ERROR] ERROR\n');
-  })
+  });
 
   it('Should not log if not in debug mode', async () => {
     const transports = [
       new File({ l: [Level.DEBUG], path: './logs/debug.txt' }),
     ];
 
-    const logger = new Logger(
-      { t: transports, debug: false }
-    );
+    const logger = new Logger({ t: transports, debug: false });
 
     logger.log('DEBUG', Level.DEBUG);
 
@@ -109,10 +104,6 @@ describe('log', () => {
     try {
       const debug = fs.readFileSync('logs/debug.txt', 'utf-8');
       expect(debug).toBe('');
-    }
-    catch (e) { } // File was not created because of the debug mode
-
-
-  })
-
-})
+    } catch (e) {} // File was not created because of the debug mode
+  });
+});

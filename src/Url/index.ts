@@ -4,15 +4,14 @@ export interface Query {
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
-export const buildUrlWithQuery = (
-  inUrl: string,
-  query: Query,
-) => {
+export const buildUrlWithQuery = (inUrl: string, query: Query) => {
   const url = new URL(inUrl);
   Object.keys(query).forEach((key) => {
     const currentQuery = query[key];
     if (Array.isArray(currentQuery)) {
-      currentQuery.forEach((qArr) => url.searchParams.append(key, qArr.toString()));
+      currentQuery.forEach((qArr) =>
+        url.searchParams.append(key, qArr.toString()),
+      );
     } else {
       if (currentQuery !== undefined && currentQuery !== null)
         url.searchParams.set(key, currentQuery.toString());
@@ -22,28 +21,23 @@ export const buildUrlWithQuery = (
 };
 
 export class Uri {
-
   constructor(
     private url: string,
     private method: Method,
     private query: Query,
     private body: Query,
-    private headers: Record<string, string> = {}
-  ) { }
+    private headers: Record<string, string> = {},
+  ) {}
 
   fetchJson = async (query: Record<string, string | string[] | undefined>) => {
     return (await this.fetch()).json();
-  }
+  };
 
   fetch = () => {
-    return fetch(
-      buildUrlWithQuery(this.url, this.query).toString(),
-      {
-        method: this.method,
-        body: JSON.stringify(this.body),
-        headers: this.headers,
-      }
-    )
-  }
-
+    return fetch(buildUrlWithQuery(this.url, this.query).toString(), {
+      method: this.method,
+      body: JSON.stringify(this.body),
+      headers: this.headers,
+    });
+  };
 }

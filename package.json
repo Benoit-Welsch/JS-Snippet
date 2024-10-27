@@ -1,5 +1,5 @@
 {
-  "version": "1.2.5",
+  "version": "1.2.6",
   "name": "@lv00/toolkit",
   "module": "./dist/index.js",
   "type": "module",
@@ -15,8 +15,8 @@
   },
   "devDependencies": {
     "@types/lodash.mergewith": "^4.6.9",
-    "@types/node": "^20.16.5",
-    "bun-plugin-dts": "^0.2.3",
+    "@types/node": "^20.17.1",
+    "bun-plugin-dts": "^0.2.4",
     "bun-types": "latest",
     "prettier": "^3.3.3"
   },

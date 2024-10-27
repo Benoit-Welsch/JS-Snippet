@@ -44,7 +44,13 @@ export const convertTime = (n: number, from: UnitTime, to: UnitTime) => {
     humanReadable: function (): string {
       const round = this.round(0);
       const rest = valueInms - round * power[unitIndex];
-      return round + this.unit + (rest > 0 ? ` ${convertTime(rest, defaultUnitsTime[unitIndex], defaultUnitsTime[unitIndex + 1]).humanReadable()}` : '');
+      return (
+        round +
+        this.unit +
+        (rest > 0
+          ? ` ${convertTime(rest, defaultUnitsTime[unitIndex], defaultUnitsTime[unitIndex + 1]).humanReadable()}`
+          : '')
+      );
     },
     round: function (r = 3) {
       // q = number of decimal number
@@ -55,4 +61,4 @@ export const convertTime = (n: number, from: UnitTime, to: UnitTime) => {
       return this.round(r) + this.unit;
     },
   };
-}
+};

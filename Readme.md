@@ -218,7 +218,7 @@ size.roundToString(2); // 1.00K
 Conveniently build urls with query parameters.
 
 ```typescript
-import { Url } from '@lv00/toolkit';
+import { Url, Uri } from '@lv00/toolkit';
 
 const url = 'https://lv0.eu/';
 const query = {
@@ -228,5 +228,12 @@ const query = {
 
 const q = Url.buildUrlWithQuery(url, query);
 console.log(q.toString()); // https://lv0.eu/?p=2&brand=sony&brand=microsoft&brand=nintendo'
+
+const uri = new Uri(
+  url,
+  "GET"
+  query,
+  )
+const json = await uri.fetchJson()
 ```
 

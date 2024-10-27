@@ -13,7 +13,7 @@ export default class CSV extends Array<Array<string | number>> {
   }
 
   /**
-    * Set the header of the CSV
+   * Set the header of the CSV
    * @param head - The header of the CSV
    */
   setHeader(head: string[]) {
@@ -27,7 +27,7 @@ export default class CSV extends Array<Array<string | number>> {
    * @example
    * const csv = new CSV({ header: ['First Name', 'Last Name'] });
    * csv.getHeaders(); // Output: ['First Name', 'Last Name']
-    */
+   */
   getHeaders() {
     return this[0];
   }
@@ -82,7 +82,7 @@ export default class CSV extends Array<Array<string | number>> {
    * csv.each((line, index) => {
    *  console.log(line); // Output: ['John', 'Doe'] and ['Jane', 'Doe']
    * });
-    */
+   */
   each(
     header = false,
     callbackfn: (
@@ -96,7 +96,7 @@ export default class CSV extends Array<Array<string | number>> {
   }
 
   /**
-   * 
+   *
    * @param line - The line to add
    * @param smallerConsideredAsError - If true, the line length must be equal to the header length (default: true)
    * @example
@@ -139,7 +139,7 @@ export default class CSV extends Array<Array<string | number>> {
   /**
    * Convert the CSV to a string with break lines and separators
    * @param separator
-   * @param header 
+   * @param header
    * @returns A string
    * @example
    * const csv = new CSV({ header: ['First Name', 'Last Name'] });
@@ -168,7 +168,7 @@ export default class CSV extends Array<Array<string | number>> {
    * const csv = new CSV({ header: ['First Name', 'Last Name'] });
    * csv.addLine(['John', 'Doe']);
    * csv.toStringEncoded(';', [{ from: ' ', to: '_' }]); // Output: "First_Name";"Last_Name"\r\n"John";"Doe"
-    */
+   */
   toStringEncoded(
     separator = ';',
     rules: { from: RegExp | string; to: string }[],
