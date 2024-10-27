@@ -8,13 +8,7 @@ const root = Scanner.readFolder('./src');
 const allDoc = root
   .flat()
   .filter((file) => file.name.endsWith('.md'))
-  .sort((a, b) => {
-    const name = a.path.split('/')[1];
-    const name2 = b.path.split('/')[1];
-    if (name > name2) return 1;
-    if (name < name2) return -1;
-    return 0;
-  });
+  .sort((a, b) => a.parent.name.localeCompare(b.parent.name));
 
 let out = allDoc.find((file) => file.name === 'Base.md')?.read() || '';
 
@@ -27,8 +21,8 @@ const toc = docs
 
 const docsString = docs.map((f) => f.read()).join('\n');
 
-out = out.replaceAll('{% toc %}', toc);
-out = out.replaceAll('{% docs %}', docsString);
+out = out.replace('{% toc %}', toc);
+out = out.replace('{% docs %}', docsString);
 
 try {
   writeFileSync('./Readme.md', out);
