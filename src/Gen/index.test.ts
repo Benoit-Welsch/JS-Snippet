@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test';
-import { randomName, randomNumbers } from './index';
+import { randomName, randomNumber } from './index';
 
 describe('randomName', () => {
   it('should generate a random name with default options', () => {
@@ -22,7 +22,7 @@ describe('randomName', () => {
 
   it('should generate a random number', () => {
     for (let i = 0; i < 100; i++) {
-      const number = randomNumbers(0, i);
+      const number = randomNumber(0, i);
       expect(number).toBeGreaterThanOrEqual(0);
       expect(number).toBeLessThanOrEqual(i);
     }
