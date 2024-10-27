@@ -1,4 +1,4 @@
-# ToolKit
+# 🛠️ ToolKit
 
 [![Publish to NPM](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/publish.yml/badge.svg)](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/publish.yml)
 [![Unit Test](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/test.yml/badge.svg)](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/test.yml)
