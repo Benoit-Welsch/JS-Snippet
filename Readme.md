@@ -2,15 +2,19 @@
 
 [![Publish to NPM](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/publish.yml/badge.svg)](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/publish.yml)
 [![Unit Test](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/test.yml/badge.svg)](https://github.com/Benoit-Welsch/ToolKitJs/actions/workflows/test.yml)
-<br>
 [![npm version](https://badge.fury.io/js/%40lv00%2Ftoolkit.svg)](https://badge.fury.io/js/%40lv00%2Ftoolkit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Versatile JavaScript Toolkit for Everyday Use
+
+## Table of Contents
 
 - [Check](#check)
 - [Csv](#csv)
 - [Gen](#gen)
 - [Log](#log)
 - [Parser](#parser)
+- [Plugin](#plugin)
 - [Queue](#queue)
 - [Scanner](#scanner)
 - [Unit](#unit)
@@ -179,6 +183,23 @@ console.log(result);
     name: "usbhid-ups",
   },
 }
+```
+
+### Plugin
+
+Lazy loading of plugins.
+
+```typescript
+import { Plugin } from "@lv00/toolkit";
+
+// defined all the plugin in a folder
+class myPlugin extends Plugin { 
+  constructor() {
+    super();
+  }
+}
+
+Plugin.load("./path/to/your/plugin/folder");
 ```
 
 
