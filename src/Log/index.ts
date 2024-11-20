@@ -18,13 +18,12 @@ export type Payload = {
 
 export class Logger {
   transports: Transporter[] = [];
-  debug = false;
+  dev = false;
 
-  constructor(options: { t: Transporter[]; debug?: boolean }) {
+  constructor(options: { t: Transporter[]; dev?: boolean }) {
     if (options.t) {
       this.transports = options.t;
-      this.debug =
-        options.debug || process.env.NODE_ENV === 'development' || false;
+      this.dev = options.dev || process.env.NODE_ENV === 'development' || false;
     }
   }
 
@@ -36,7 +35,7 @@ export class Logger {
   }
 
   log(message: string, l = Level.INFO) {
-    if (!this.debug && l == Level.DEBUG) return;
+    if (!this.dev && l == Level.DEBUG) return;
     this.transports.forEach((t) => {
       if (t.reacToLevels.includes(l)) t.send({ message, level: l });
     });
@@ -46,6 +45,22 @@ export class Logger {
     this.transports.forEach((t) => {
       if (t.reacToLevels.includes(Level.ERROR)) t.catch(err);
     });
+  }
+
+  info(message: string) {
+    this.log(message, Level.INFO);
+  }
+  ok(message: string) {
+    this.log(message, Level.OK);
+  }
+  warn(message: string) {
+    this.log(message, Level.WARN);
+  }
+  error(message: string) {
+    this.log(message, Level.ERROR);
+  }
+  debug(message: string) {
+    this.log(message, Level.DEBUG);
   }
 }
 

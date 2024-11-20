@@ -15,26 +15,25 @@ describe('Url', () => {
     );
   });
 
-  // it('Should create a Uri and get a response', async () => {
-  //   const uri = new Uri(
-  //     'https://lv0.eu/',
-  //     'POST',
-  //     {
-  //       p: 2,
-  //       brand: ['sony', 'microsoft', 'nintendo'],
-  //       s: 'game',
-  //       private: false,
-  //     },
-  //     {
-  //       p: 2,
-  //       brand: ['sony', 'microsoft', 'nintendo'],
-  //       s: 'game',
-  //       private: false,
-  //     },
-  //   );
+  it('Should create a Uri and get a response', async () => {
+    const uri = new Uri(
+      'https://lv0.eu/',
+      'POST',
+      {
+        p: 2,
+        brand: ['sony', 'microsoft', 'nintendo'],
+        s: 'game',
+        private: false,
+      },
+      {
+        p: 2,
+        brand: ['sony', 'microsoft', 'nintendo'],
+        s: 'game',
+        private: false,
+      },
+    );
 
-  //   const response = await uri.fetchJson({});
-  //   expect(response).toBeDefined();
-
-  // });
+    const response = await uri.fetchJson({});
+    expect(response).toBeDefined();
+  });
 });

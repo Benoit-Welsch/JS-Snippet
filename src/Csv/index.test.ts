@@ -123,4 +123,36 @@ describe('CSV', () => {
       ]);
     });
   });
+
+  describe('each', () => {
+    it('should iterate over each line with header', () => {
+      const csv = new CSV({ header });
+      csv.addSequentially('John');
+      csv.addSequentially(30);
+      csv.addSequentially('john@example.com');
+
+      const lines: (string | number)[][] = [];
+
+      csv.each(true, (line) => {
+        lines.push(line);
+      });
+
+      expect(lines).toEqual([header, ['John', 30, 'john@example.com']]);
+    });
+
+    it('should iterate over each line without header', () => {
+      const csv = new CSV({ header });
+      csv.addSequentially('John');
+      csv.addSequentially(30);
+      csv.addSequentially('john@example.com');
+
+      const lines: (string | number)[][] = [];
+
+      csv.each(false, (line) => {
+        lines.push(line);
+      });
+
+      expect(lines).toEqual([['John', 30, 'john@example.com']]);
+    });
+  });
 });

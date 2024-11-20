@@ -15,9 +15,10 @@ export interface BaseModelObj {
 }
 
 export class Plugin {
-  static _model: BaseModelObj;
-  static _prefix: string;
-  static _loadEnv?: boolean = false;
+  [x: string]: any;
+  static _model?: BaseModelObj;
+  static _prefix?: string;
+  static _loadEnv: boolean = false;
 
   static load = async <T extends Plugin>(folder: string): Promise<T[]> => {
     const plugins = await Plugin.import<T>(folder);
@@ -33,7 +34,7 @@ export class Plugin {
         // checkConfig(env, pluginClass._model, envPrefix);
         // return new pluginClass(env);
       })
-      .filter((plugin) => plugin && plugin !== null) as Plugin[];
+      .filter((plugin) => plugin && plugin !== null) as T[];
   };
 
   static import = async <T extends Plugin>(folder: string): Promise<T[]> => {
