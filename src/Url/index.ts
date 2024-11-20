@@ -27,9 +27,13 @@ export class Uri {
     private query: Query,
     private body: Query,
     private headers: Record<string, string> = {},
-  ) {}
+  ) { }
 
-  fetchJson = async (query: Record<string, string | string[] | undefined>) => {
+  get urlWithQuery() {
+    return buildUrlWithQuery(this.url, this.query).toString();
+  }
+
+  fetchJson = async () => {
     return (await this.fetch()).json();
   };
 

@@ -15,7 +15,7 @@ describe('Url', () => {
     );
   });
 
-  it('Should create a Uri and get a response', async () => {
+  it('Should create a Uri', async () => {
     const uri = new Uri(
       'https://lv0.eu/',
       'POST',
@@ -33,7 +33,9 @@ describe('Url', () => {
       },
     );
 
-    const response = await uri.fetchJson({});
-    expect(response).toBeDefined();
+    expect(uri.urlWithQuery).toBe(
+      'https://lv0.eu/?p=2&brand=sony&brand=microsoft&brand=nintendo&s=game&private=false',
+    );
+
   });
 });

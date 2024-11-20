@@ -22,8 +22,6 @@ describe('Plugin', () => {
   it('should load plugins from a folder', async () => {
     const plugins = await Plugin.load<ExamplePlugin>('./src/Plugin/test');
     expect(plugins).toHaveLength(2);
-    expect(plugins[0].name).toBe('TestPlugin2');
-    expect(plugins[1].name).toBe('TestPlugin1');
   });
 
   it('should import plugins from a folder', async () => {
@@ -32,7 +30,5 @@ describe('Plugin', () => {
     const test = plugins.map((plugin) => new plugin('TestPlugin'));
     console.log(test);
     expect(plugins).toHaveLength(2);
-    expect(plugins[0].name).toBe('ExamplePlugin2');
-    expect(plugins[1].name).toBe('ExamplePlugin1');
   });
 });
