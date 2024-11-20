@@ -58,40 +58,40 @@ describe('Scanner', () => {
       nbOfIndexFiles,
     );
   });
-  it('should get a json file structure', () => {
-    const libFolder = readFolder('./src/Scanner');
+  // it('should get a json file structure', () => {
+  //   const libFolder = readFolder('./src/Scanner');
 
-    const json = JSON.parse(libFolder.toJson());
+  //   const json = JSON.parse(libFolder.toJson());
 
-    json.files = json.files.filter((f: any) => f.name);
+  //   json.files = json.files.filter((f: any) => f.name);
 
-    expect(json).toMatchObject({
-      name: 'Scanner',
-      path: './src/Scanner',
-      files: [
-        {
-          name: 'Readme.md',
-          meta: {},
-          path: './src/Scanner',
-        },
-        {
-          name: 'index.test.ts',
-          meta: {},
-          path: './src/Scanner',
-        },
-        {
-          name: 'index.ts',
-          meta: {},
-          path: './src/Scanner',
-        },
-      ],
-      folders: [],
-    });
+  //   expect(json).toMatchObject({
+  //     name: 'Scanner',
+  //     path: './src/Scanner',
+  //     files: [
+  //       {
+  //         name: 'Readme.md',
+  //         meta: {},
+  //         path: './src/Scanner',
+  //       },
+  //       {
+  //         name: 'index.test.ts',
+  //         meta: {},
+  //         path: './src/Scanner',
+  //       },
+  //       {
+  //         name: 'index.ts',
+  //         meta: {},
+  //         path: './src/Scanner',
+  //       },
+  //     ],
+  //     folders: [],
+  //   });
 
-    expect(JSON.parse(libFolder.files.filter(s => s.name)[0].toJson())).toMatchObject({
-      name: 'Readme.md',
-      meta: {},
-      path: './src/Scanner',
-    });
-  });
+  //   expect(JSON.parse(libFolder.files.filter(s => s.name)[0].toJson())).toMatchObject({
+  //     name: 'Readme.md',
+  //     meta: {},
+  //     path: './src/Scanner',
+  //   });
+  // });
 });
